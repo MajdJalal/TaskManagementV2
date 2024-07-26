@@ -1,0 +1,688 @@
+openapi: 3.0.1
+info:
+  title: Task Management REST API Documentation
+  description: task management REST API Documentation
+  contact:
+    name: majd alkhawaja
+    email: majdjalkhawaja@gmail.com
+  version: v2
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: CRUD REST APIs for Task
+    description: CRUD REST APIs for tasks
+  - name: CRUD REST APIs for Project
+    description: CRUD REST APIs for projects
+  - name: CRUD REST APIs for User
+    description: CRUD REST APIs for users
+paths:
+  /api/taskManagement/v2/user:
+    get:
+      tags:
+        - CRUD REST APIs for User
+      summary: Get User REST API
+      description: REST API Get User details
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: userResponseDto
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserResponseDto'
+    put:
+      tags:
+        - CRUD REST APIs for User
+      summary: Update User REST API
+      description: REST API to update an existing User
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    post:
+      tags:
+        - CRUD REST APIs for User
+      summary: Create User REST API
+      description: REST API to create new User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    delete:
+      tags:
+        - CRUD REST APIs for User
+      summary: Delete User REST API
+      description: REST API to delete new User
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: user was deleted successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/task:
+    get:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Get Task REST API
+      description: REST API to get an existing task
+      operationId: getTask
+      parameters:
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: TaskResponseDto
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TaskResponseDto'
+    put:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Update Task REST API
+      description: REST API to update an existing task
+      operationId: updateTask
+      parameters:
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDto'
+        required: true
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    post:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Create Task REST API
+      description: REST API to create a new task
+      operationId: createTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDto'
+        required: true
+      responses:
+        '201':
+          description: task created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    delete:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Delete Task REST API
+      description: REST API to delete an existing task
+      operationId: deleteTask
+      parameters:
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: deleted successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/userTasks:
+    post:
+      tags:
+        - CRUD REST APIs for User
+      summary: Add Task to  User REST API
+      description: REST API to Add Task to  User
+      operationId: addTaskToUser
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    delete:
+      tags:
+        - CRUD REST APIs for User
+      summary: Remove Task from User REST API
+      description: REST API to remove Task from User
+      operationId: removeTaskFromUser
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/taskProcessing:
+    post:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Process Task REST API
+      description: REST API to process existing task
+      operationId: processTask
+      parameters:
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/project:
+    get:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Get Project REST API
+      description: REST API to get an existing project
+      operationId: getProject
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ProjectResponseDto
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProjectResponseDto'
+    post:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Create Project REST API
+      description: REST API to create a new project
+      operationId: createProject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDto'
+        required: true
+      responses:
+        '201':
+          description: created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    delete:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Delete Project REST API
+      description: REST API to delete an existing project
+      operationId: deleteProject
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/projectUsers:
+    post:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Add User To Project REST API
+      description: REST API to add User To Project
+      operationId: addUserToProject
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    delete:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Remove User From Project REST API
+      description: REST API to remove User from Project
+      operationId: removeUserFromProject
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/projectTasks:
+    post:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Add Task To Project REST API
+      description: REST API to add an existing task to an existing project
+      operationId: addTaskToProject
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+    delete:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Remove Task From Project REST API
+      description: REST API to remove an existing task from an existing project
+      operationId: removeTaskFromProject
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: taskId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/taskManagement/v2/waitingTasks:
+    get:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Get Waiting Tasks REST API
+      description: REST API to get waiting tasks
+      operationId: getWaitingTasks
+      responses:
+        '200':
+          description: list of the waiting tasks
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /api/taskManagement/v2/tasksOfPriority/{priority}:
+    get:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Get Tasks Of Specified Priority REST API
+      description: REST API to get tasks of specified priority
+      operationId: getTasksOfPriority
+      parameters:
+        - name: priority
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: list of the tasks of specified priority
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /api/taskManagement/v2/projectCompletenessRate:
+    get:
+      tags:
+        - CRUD REST APIs for Project
+      summary: Get Project Completeness Rate REST API
+      description: REST API to Get Project Completeness Rate
+      operationId: getProjectCompletenessRate
+      parameters:
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: CompletenessRate Value
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/taskManagement/v2/expiredTasks:
+    get:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Get Expired Tasks REST API
+      description: REST API to get expired tasks
+      operationId: getExpiredTasks
+      responses:
+        '200':
+          description: list of the expired tasks
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /api/taskManagement/v2/doneTasks:
+    get:
+      tags:
+        - CRUD REST APIs for Task
+      summary: Get Done Tasks REST API
+      description: REST API to get done tasks
+      operationId: getDoneTasks
+      responses:
+        '200':
+          description: list of the done tasks
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+components:
+  schemas:
+    UserDto:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+    ResponseDto:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        statusMsg:
+          type: string
+    TaskDto:
+      required:
+        - description
+        - dueDate
+        - status
+        - title
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - DONE
+            - WAITING
+        priority:
+          type: integer
+          format: int32
+        dueDate:
+          type: string
+          format: date
+    ProjectDto:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        users:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        tasks:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - DONE
+            - WAITING
+        priority:
+          type: integer
+          format: int32
+        dueDate:
+          type: string
+          format: date
+        user:
+          $ref: '#/components/schemas/User'
+        project:
+          $ref: '#/components/schemas/Project'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        tasks:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        projects:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    UserResponseDto:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        tasks:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        projects:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    TaskResponseDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - DONE
+            - WAITING
+        priority:
+          type: integer
+          format: int32
+        dueDate:
+          type: string
+          format: date
+        user:
+          $ref: '#/components/schemas/User'
+        project:
+          $ref: '#/components/schemas/Project'
+    ProjectResponseDto:
+      type: object
+      properties:
+        name:
+          type: string
+        users:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        tasks:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
