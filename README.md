@@ -31,3 +31,7 @@ Services are built for each entity (User, Task, Project).
 Repository:
 Handles communication with the database.
 Repositories are built for each entity (User, Task, Project).
+
+ *The application.yml include the configuration required for connecting with the pstgresql database it includes the "url, username, password" to postgresql, and also the dialect in which we communicate with the database (how SQL is generated)
+
+ *the pom.xml includes all dependecies needed for my application to work.
