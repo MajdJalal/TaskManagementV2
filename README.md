@@ -1,4 +1,5 @@
 #Task Management version 2
+
 This project is a Task Management System that integrates JPA and Hibernate for data persistence and manages interactions with a PostgreSQL database.
 
 The system includes entities for User, Task, and Project, and provides CRUD operations through JPA repositories.
